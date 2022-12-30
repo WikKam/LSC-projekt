@@ -1,0 +1,3 @@
+[submodule "ansible-nomad/roles/nomad"]
+	path = ansible-nomad/roles/nomad
+	url = https://github.com/ansible-community/ansible-nomad

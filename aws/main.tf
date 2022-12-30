@@ -68,6 +68,30 @@ resource "aws_security_group" "allow_ssh_http_https" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
+  ingress {
+    description = "nomad-http"
+    from_port   = 4646
+    to_port     = 4646
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
+    description = "nomad-rpc"
+    from_port   = 4647
+    to_port     = 4647
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
+    description = "nomad-serf"
+    from_port   = 4648
+    to_port     = 4648
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
   egress {
     from_port   = 0
     to_port     = 0

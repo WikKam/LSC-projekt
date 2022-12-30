@@ -1,0 +1,9 @@
+- hosts: all
+  become: true
+  roles:
+    - role: docker
+    - role: nomad
+      nomad_docker_enable: true
+      nomad_group_name: all
+      nomad_servers:
+        - master
