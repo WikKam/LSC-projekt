@@ -96,4 +96,25 @@ they serve only as an example.
    ```bash
    nomad node status
    ```
+   
+5. Play with nomad jobs.
+   
+   To deploy a job, run:
+   ```bash
+   nomad job run demo-nomad.hcl
+   ```
+
+   To see job status, run:
+   ```bash
+   nomad job status demo-nomad
+   ```
+
+   To see allocation logs, run:
+   ```bash
+   nomad alloc logs df69c3b0
+   ```
+
+
+
+
 

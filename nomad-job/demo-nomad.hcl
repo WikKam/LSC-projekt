@@ -1,18 +1,18 @@
-job "blender-render-nomad" {
+job "demo-nomad" {
   datacenters = ["dc1"]
   type = "batch"
 
   meta { }
 
   group "agh" {
-    task "blender-render" {
+    task "curl" {
       driver = "docker"
 
       config {
         image          = "alpine/curl:3.14"
         command        = "curl"
         args           = [
-          "-s", "https://www.google.com/"
+          "-I", "https://www.google.com/"
         ]
         auth_soft_fail = true
       }
