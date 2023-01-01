@@ -71,8 +71,7 @@ they serve only as an example.
    terraform destroy
    ```
    
-2. Ssh into master-machine, just to see what's going on:
-   ```bash
+2. SSH into master-machine, just to see what's going on:
    ```bash
       ssh -i "labuser.pem" ubuntu@ec2-3-238-53-103.compute-1.amazonaws.com
    ```
@@ -126,6 +125,14 @@ they serve only as an example.
    ```bash
    nomad alloc logs df69c3b0
    ```
+   
+6. Run blender job.
+
+   Change `count` in `blender-render-nomad.hcl` to desired number of jobs.
+   ```bash
+   nomad job run blender-render-nomad.hcl
+   ```
+   Head to consul UI to watch the progress of these jobs.
 
 
 
