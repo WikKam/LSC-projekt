@@ -58,17 +58,42 @@ they serve only as an example.
    terraform destroy
    ```
    
-2. Ssh into master-machine:
+2. Ssh into master-machine, just to see what's going on:
+   ```bash
    ```bash
       ssh -i "labuser.pem" ubuntu@ec2-3-238-53-103.compute-1.amazonaws.com
    ```
 3. Deploy nomad on top of the deployed cluster:
+   
    Check if connecting to master machine is possible:
    ```bash
    ansible master -m command --args "ls -l"
    ```
+   
    Check if workers are up and running:
    ```bash
    ansible workers -m ping
    ```
    
+   Deploy nomad, remember about updating hosts.ini file:
+   ```bash
+   ansible-playbook site.yml
+   ```
+
+   Nomad UI should be available at: `http://<master-ip>:4646`
+   ```bash
+   open "http://$(terraform output -raw master_public_ip):4646"
+   ```
+
+4. Configure nomad client.
+   
+   Set nomad master server address for nomad client:
+   ```bash
+   export NOMAD_ADDR="http://$(terraform output -raw master_public_ip):4646"
+   ```
+   
+   See if nomad nodes are up and running:
+   ```bash
+   nomad node status
+   ```
+
