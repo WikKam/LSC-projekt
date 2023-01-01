@@ -15,6 +15,18 @@ data "aws_vpc" "default" {
   default = true
 }
 
+variable "key_pair_name" {
+  type = string
+  description = "The name of the key pair used to ssh into ec2s"
+  default = "vockey" # this is the one generated automatically by AWS academy, used to be 'karol' :D
+}
+
+variable "workers_count" {
+  type = number
+  description = "The number of ec2 worker machines to create"
+  default = 1
+}
+
 resource "aws_security_group" "allow_ssh_http_https" {
   name        = "vm-security-group"
   description = "Allow SSH, HTTP and HTTPS traffic"
@@ -103,7 +115,7 @@ resource "aws_security_group" "allow_ssh_http_https" {
 resource "aws_instance" "master" {
   ami                         = "ami-0b93ce03dcbcb10f6" # Ubuntu 20.04
   instance_type               = "t3.small"
-  key_name                    = "karol"
+  key_name                    = var.key_pair_name
   security_groups             = [aws_security_group.allow_ssh_http_https.name]
   associate_public_ip_address = true
 
@@ -118,11 +130,11 @@ resource "aws_instance" "master" {
 }
 
 resource "aws_instance" "worker" {
-  count = 8
+  count = var.workers_count
 
   ami                         = "ami-0b93ce03dcbcb10f6" # Ubuntu 20.04
   instance_type               = "t3.small"
-  key_name                    = "karol"
+  key_name                    = var.key_pair_name
   security_groups             = [aws_security_group.allow_ssh_http_https.name]
   associate_public_ip_address = true
 

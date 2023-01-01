@@ -7,7 +7,6 @@
 ## Setup
 
 ```bash
-# download submodules after cloning
 git submodule update --init --recursive
 ```
 
@@ -26,3 +25,8 @@ Schedule the jobs:
 ```
 kubectl apply -f kubernetes-job/blender-render.yaml
 ```
+
+## Nomad jobs
+
+First of all I need some aws account
+let it be the account that we got for these classes.
