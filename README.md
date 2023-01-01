@@ -14,6 +14,15 @@ git submodule update --init --recursive
 There exists [petroniuss/lcs-blender:latest](https://hub.docker.com/repository/docker/petroniuss/lcs-blender)
 docker image that can be used to run blender jobs.
 
+Usage:
+```bash
+docker run petroniuss/lcs-blender:latest \
+   --background myfile.blend \
+   -E CYCLES \
+   --render-output ./frame-1.png \
+   --render-frame 1
+```
+
 ## Kubernetes jobs
 
 In order to run Kubernetes jobs locally, do the following:

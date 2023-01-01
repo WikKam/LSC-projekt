@@ -2,10 +2,9 @@ job "blender-render-nomad" {
   datacenters = ["dc1"]
   type = "batch"
 
-  meta { }
-
-  group "agh" {
-    task "blender-render" {
+  group "blender-render-group" {
+    count = 2
+    task "blender-render-task" {
       driver = "docker"
 
       config {
@@ -13,15 +12,15 @@ job "blender-render-nomad" {
         args           = [
           "--background", "myfile.blend",
           "-E", "CYCLES",
-          "--render-output", "./frame-$(JOB_COMPLETION_INDEX).png",
-          "--render-frame", "$(JOB_COMPLETION_INDEX)"
+          "--render-output", "./frame-${NOMAD_ALLOC_INDEX}.png",
+          "--render-frame", "${NOMAD_ALLOC_INDEX}"
         ]
         auth_soft_fail = true
       }
 
       resources {
         cpu    = 500
-        memory = 256
+        memory = 512
       }
     }
   }
