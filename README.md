@@ -133,8 +133,3 @@ they serve only as an example.
    nomad job run blender-render-nomad.hcl
    ```
    Head to consul UI to watch the progress of these jobs.
-
-
-
-
-

@@ -3,7 +3,7 @@ job "blender-render-nomad" {
   type = "batch"
 
   group "blender-render-group" {
-    count = 2
+    count = 8
     task "blender-render-task" {
       driver = "docker"
 

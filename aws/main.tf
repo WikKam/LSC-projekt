@@ -24,7 +24,7 @@ variable "key_pair_name" {
 variable "workers_count" {
   type = number
   description = "The number of ec2 worker machines to create"
-  default = 1
+  default = 8
 }
 
 resource "aws_security_group" "allow_ssh_http_https" {
