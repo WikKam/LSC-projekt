@@ -1,0 +1,14 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: mini-job
+spec:
+  completions: 1
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: blender
+          image: alpine:latest
+          workingDir: /app
+          command: ["/bin/sh", "-c", "date"]
