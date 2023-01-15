@@ -3,16 +3,27 @@ kind: Job
 metadata:
   name: blender-render-job
 spec:
-  completions: 100
+  completions: 1
   parallelism: 1
   completionMode: Indexed
   template:
     spec:
-      containers:
-      - name: blender
-        image: blender-job
-        workingDir: /app
-        args: ["--background", "myfile.blend", "-E", "CYCLES", "--render-output", "./frame-$(JOB_COMPLETION_INDEX).png", "--render-frame", "$(JOB_COMPLETION_INDEX)"]
-        imagePullPolicy: Never
       restartPolicy: Never
-  backoffLimit: 4
+      containers:
+        - name: blender
+          image: petroniuss/lcs-blender:latest
+          workingDir: /app
+          args:
+            [
+              "--background",
+              "myfile.blend",
+              "-E",
+              "CYCLES",
+              "--render-output",
+              "./frame-$(JOB_COMPLETION_INDEX).png",
+              "--render-frame",
+              "$(JOB_COMPLETION_INDEX)",
+            ]
+          resources:
+            requests:
+              memory: 1100Mi

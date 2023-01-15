@@ -19,8 +19,8 @@ job "blender-render-nomad" {
       }
 
       resources {
-        cpu    = 500 # MHz, tweak this to your needs.
-        memory = 512 # MB, this has to be more than 300MB for Blender to work.
+        cpu    = 3000 # MHz, tweak this to your needs.
+        memory = 1100 # MB, this has to be more than 300MB for Blender to work.
       }
     }
   }
