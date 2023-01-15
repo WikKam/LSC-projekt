@@ -13,3 +13,6 @@ spec:
           image: alpine:latest
           workingDir: /app
           command: ["/bin/sh", "-c", "date"]
+          resources:
+            requests:
+              memory: 20M
