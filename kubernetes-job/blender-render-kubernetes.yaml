@@ -3,15 +3,15 @@ kind: Job
 metadata:
   name: blender-render-job
 spec:
-  completions: 1
-  parallelism: 1
+  completions: 100
+  parallelism: 100
   completionMode: Indexed
   template:
     spec:
       restartPolicy: Never
       containers:
         - name: blender
-          image: petroniuss/lcs-blender:latest
+          image: petroniuss/lcs-blender:v2
           workingDir: /app
           args:
             [
