@@ -3,12 +3,13 @@ kind: Job
 metadata:
   name: mini-job
 spec:
-  completions: 1
+  completions: 500
+  parallelism: 500
   template:
     spec:
       restartPolicy: Never
       containers:
-        - name: blender
+        - name: date
           image: alpine:latest
           workingDir: /app
           command: ["/bin/sh", "-c", "date"]
